@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>4MankkDev Obfus Generator</title>
+<link rel="icon" type="image/png" href="logo.png" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ======================= LOGIN SCREEN ======================= -->
+<div id="loginScreen" class="screen">
+  <div class="bg-grid"></div>
+  <div class="login-card">
+    <img src="logo.png" alt="4MankkDev" class="login-logo" />
+    <h1 class="login-title">4MANKK <span class="gold">DEV</span></h1>
+    <p class="login-subtitle">Obfus Generator Pribadi</p>
+
+    <form id="loginForm" class="login-form">
+      <div class="input-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" autocomplete="username" required />
+      </div>
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" autocomplete="current-password" required />
+      </div>
+      <div id="loginError" class="error-msg hidden"></div>
+      <button type="submit" class="btn-gold btn-full" id="loginBtn">MASUK</button>
+    </form>
+  </div>
+</div>
+
+<!-- ======================= MAIN APP ======================= -->
+<div id="mainApp" class="screen hidden">
+  <header class="topbar">
+    <div class="topbar-left">
+      <img src="logo.png" alt="4MankkDev" class="topbar-logo" />
+      <span class="topbar-title">4MANKK <span class="gold">DEV</span> <small>Obfus Generator</small></span>
+    </div>
+    <div class="topbar-right">
+      <span id="userInfo" class="user-info"></span>
+      <button id="logoutBtn" class="btn-outline">Logout</button>
+    </div>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab-btn active" data-tab="obfuscate">🔒 Obfuscate</button>
+    <button class="tab-btn" data-tab="deobfuscate">🔓 Deobfuscate</button>
+  </nav>
+
+  <!-- TAB: OBFUSCATE -->
+  <section id="tab-obfuscate" class="tab-panel active">
+    <div class="panel-grid">
+      <div class="panel-col">
+        <div class="panel-col-header">
+          <span>Source Lua (Input)</span>
+          <span id="obfInputSize" class="size-badge">0 bytes</span>
+        </div>
+        <textarea id="obfInput" class="code-area" placeholder="-- Paste source Lua kamu di sini...
+local function hello()
+    print('Hello World')
+end
+hello()" spellcheck="false"></textarea>
+      </div>
+      <div class="panel-col">
+        <div class="panel-col-header">
+          <span>Hasil Obfuscated (Output)</span>
+          <span id="obfOutputSize" class="size-badge">0 bytes</span>
+        </div>
+        <textarea id="obfOutput" class="code-area" placeholder="Hasil akan muncul di sini..." readonly spellcheck="false"></textarea>
+      </div>
+    </div>
+
+    <div class="toolbar">
+      <button id="obfGenerateBtn" class="btn-gold">⚡ GENERATE</button>
+      <button id="obfCopyBtn" class="btn-outline">📋 Copy</button>
+      <button id="obfDownloadBtn" class="btn-outline">⬇️ Download .lua</button>
+      <button id="obfClearBtn" class="btn-outline-red">🗑️ Clear</button>
+    </div>
+
+    <div id="obfMeta" class="meta-info hidden">
+      <div class="meta-item"><span class="meta-label">Original:</span> <span id="metaOriginal">-</span></div>
+      <div class="meta-item"><span class="meta-label">Minified:</span> <span id="metaMinified">-</span></div>
+      <div class="meta-item"><span class="meta-label">Encrypted:</span> <span id="metaEncrypted">-</span></div>
+      <div class="meta-item"><span class="meta-label">Reduksi:</span> <span id="metaRatio">-</span></div>
+    </div>
+
+    <div id="obfStatus" class="status-msg hidden"></div>
+  </section>
+
+  <!-- TAB: DEOBFUSCATE -->
+  <section id="tab-deobfuscate" class="tab-panel">
+    <div class="panel-grid">
+      <div class="panel-col">
+        <div class="panel-col-header">
+          <span>Obfuscated Code (Input)</span>
+          <span id="deobfInputSize" class="size-badge">0 bytes</span>
+        </div>
+        <textarea id="deobfInput" class="code-area" placeholder="Paste kode hasil obfuscate dari tools ini..." spellcheck="false"></textarea>
+      </div>
+      <div class="panel-col">
+        <div class="panel-col-header">
+          <span>Source Asli (Output)</span>
+          <span id="deobfOutputSize" class="size-badge">0 bytes</span>
+        </div>
+        <textarea id="deobfOutput" class="code-area" placeholder="Hasil decode akan muncul di sini..." readonly spellcheck="false"></textarea>
+      </div>
+    </div>
+
+    <div class="toolbar">
+      <button id="deobfGenerateBtn" class="btn-gold">⚡ DECODE</button>
+      <button id="deobfCopyBtn" class="btn-outline">📋 Copy</button>
+      <button id="deobfDownloadBtn" class="btn-outline">⬇️ Download .lua</button>
+      <button id="deobfClearBtn" class="btn-outline-red">🗑️ Clear</button>
+    </div>
+
+    <div id="deobfStatus" class="status-msg hidden"></div>
+  </section>
+
+  <footer class="footer">
+    © 2025 4MankkDev — Obfus Generator Pribadi
+  </footer>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
